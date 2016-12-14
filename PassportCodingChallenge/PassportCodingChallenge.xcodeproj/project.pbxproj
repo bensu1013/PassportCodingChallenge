@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		91AB7A3D107C26AE6E69D850 /* Pods_PassportCodingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E266C64E3B956E254951BCC /* Pods_PassportCodingChallenge.framework */; };
 		B5181ABB1E00778E0016833F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181ABA1E00778E0016833F /* AppDelegate.swift */; };
-		B5181ABD1E00778E0016833F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181ABC1E00778E0016833F /* ViewController.swift */; };
+		B5181ABD1E00778E0016833F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181ABC1E00778E0016833F /* MainViewController.swift */; };
 		B5181AC01E00778E0016833F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5181ABE1E00778E0016833F /* Main.storyboard */; };
 		B5181AC21E00778E0016833F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5181AC11E00778E0016833F /* Assets.xcassets */; };
 		B5181AC51E00778E0016833F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5181AC31E00778E0016833F /* LaunchScreen.storyboard */; };
 		B5181ACD1E00A7680016833F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5181ACC1E00A7680016833F /* GoogleService-Info.plist */; };
 		B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181ACE1E00A7C50016833F /* UserProfile.swift */; };
 		B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD01E00A8D60016833F /* FirebaseAPI.swift */; };
+		FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FE81E00D1660090C291 /* DataOrganizer.swift */; };
+		FD054FEB1E00D3110090C291 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FEA1E00D3110090C291 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +26,7 @@
 		73988656F60547C22F9B8D4A /* Pods-PassportCodingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PassportCodingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-PassportCodingChallenge/Pods-PassportCodingChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		B5181AB71E00778E0016833F /* PassportCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassportCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5181ABA1E00778E0016833F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5181ABC1E00778E0016833F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5181ABC1E00778E0016833F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B5181ABF1E00778E0016833F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5181AC11E00778E0016833F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5181AC41E00778E0016833F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		B5181ACC1E00A7680016833F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5181ACE1E00A7C50016833F /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		B5181AD01E00A8D60016833F /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
+		FD054FE81E00D1660090C291 /* DataOrganizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOrganizer.swift; sourceTree = "<group>"; };
+		FD054FEA1E00D3110090C291 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				B5181ABA1E00778E0016833F /* AppDelegate.swift */,
+				FD054FEC1E00D31B0090C291 /* MainView */,
 				B5181ACE1E00A7C50016833F /* UserProfile.swift */,
 				B5181AD01E00A8D60016833F /* FirebaseAPI.swift */,
-				B5181ABC1E00778E0016833F /* ViewController.swift */,
+				FD054FE81E00D1660090C291 /* DataOrganizer.swift */,
 				B5181ABE1E00778E0016833F /* Main.storyboard */,
 				B5181AC11E00778E0016833F /* Assets.xcassets */,
 				B5181AC31E00778E0016833F /* LaunchScreen.storyboard */,
@@ -95,6 +100,15 @@
 				B5181ACC1E00A7680016833F /* GoogleService-Info.plist */,
 			);
 			path = PassportCodingChallenge;
+			sourceTree = "<group>";
+		};
+		FD054FEC1E00D31B0090C291 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				B5181ABC1E00778E0016833F /* MainViewController.swift */,
+				FD054FEA1E00D3110090C291 /* MainViewModel.swift */,
+			);
+			name = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,10 +235,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5181ABD1E00778E0016833F /* ViewController.swift in Sources */,
+				B5181ABD1E00778E0016833F /* MainViewController.swift in Sources */,
+				FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */,
 				B5181ABB1E00778E0016833F /* AppDelegate.swift in Sources */,
 				B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */,
 				B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */,
+				FD054FEB1E00D3110090C291 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,10 +17,14 @@ struct FirebaseAPI {
         
         ref.observe(.value, with: { (snapshot) in
             
-            if let json = snapshot.value as? [String : Any] {
-                handler(json)
+            if let data = snapshot.value as? [String : Any] {
+                
+                handler(data)
+                
             } else {
+                
                 handler(nil)
+                
             }
             
         })
@@ -41,7 +45,7 @@ struct FirebaseAPI {
         
         returnData["name"] = profile.name
         returnData["age"] = profile.age
-        returnData["gender"] = profile.gender
+        returnData["gender"] = profile.gender.rawValue
         returnData["hobbies"] = profile.hobbies
         
         return returnData
