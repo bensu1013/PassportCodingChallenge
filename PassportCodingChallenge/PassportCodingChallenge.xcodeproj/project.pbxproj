@@ -16,8 +16,10 @@
 		B5181ACD1E00A7680016833F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5181ACC1E00A7680016833F /* GoogleService-Info.plist */; };
 		B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181ACE1E00A7C50016833F /* UserProfile.swift */; };
 		B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD01E00A8D60016833F /* FirebaseAPI.swift */; };
+		B5181AD31E01D91A0016833F /* MainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */; };
+		B5181AD51E01E9120016833F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD41E01E9120016833F /* Extensions.swift */; };
 		FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FE81E00D1660090C291 /* DataOrganizer.swift */; };
-		FD054FEB1E00D3110090C291 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FEA1E00D3110090C291 /* MainViewModel.swift */; };
+		FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +36,10 @@
 		B5181ACC1E00A7680016833F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5181ACE1E00A7C50016833F /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		B5181AD01E00A8D60016833F /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
+		B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewTableViewCell.swift; sourceTree = "<group>"; };
+		B5181AD41E01E9120016833F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FD054FE81E00D1660090C291 /* DataOrganizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOrganizer.swift; sourceTree = "<group>"; };
-		FD054FEA1E00D3110090C291 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 				B5181ACE1E00A7C50016833F /* UserProfile.swift */,
 				B5181AD01E00A8D60016833F /* FirebaseAPI.swift */,
 				FD054FE81E00D1660090C291 /* DataOrganizer.swift */,
+				B5181AD41E01E9120016833F /* Extensions.swift */,
 				B5181ABE1E00778E0016833F /* Main.storyboard */,
 				B5181AC11E00778E0016833F /* Assets.xcassets */,
 				B5181AC31E00778E0016833F /* LaunchScreen.storyboard */,
@@ -106,7 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				B5181ABC1E00778E0016833F /* MainViewController.swift */,
-				FD054FEA1E00D3110090C291 /* MainViewModel.swift */,
+				FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */,
+				B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -238,9 +244,11 @@
 				B5181ABD1E00778E0016833F /* MainViewController.swift in Sources */,
 				FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */,
 				B5181ABB1E00778E0016833F /* AppDelegate.swift in Sources */,
+				B5181AD51E01E9120016833F /* Extensions.swift in Sources */,
 				B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */,
+				B5181AD31E01D91A0016833F /* MainViewTableViewCell.swift in Sources */,
 				B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */,
-				FD054FEB1E00D3110090C291 /* MainViewModel.swift in Sources */,
+				FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

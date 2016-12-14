@@ -62,6 +62,20 @@ struct FirebaseAPI {
         
     }
     
+    static func observeChangedProfiles(handler: @escaping ([String : Any]) -> () ) {
+        
+        ref.observe(.childChanged, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String : Any] {
+                
+                handler(data)
+                
+            }
+            
+        })
+        
+    }
+    
     //Write to firebase a new user profile
     static func addProfile(profile: UserProfile) {
         
@@ -81,6 +95,7 @@ struct FirebaseAPI {
         returnData["age"] = profile.age
         returnData["gender"] = profile.gender.rawValue
         returnData["hobbies"] = profile.hobbies
+        returnData["color"] = profile.backgroundColor
         
         return returnData
     }

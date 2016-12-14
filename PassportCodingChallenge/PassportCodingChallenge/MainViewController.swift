@@ -13,31 +13,33 @@ var fakeData: [String : Any] = [
                 "name" : "Ross",
                 "age" : 20,
                 "gender" : 0,
-                "hobbies" : "nothing great"]
+                "hobbies" : "nothing great",
+                "color" : "0xFFFFFF"]
 
 class MainViewController: UIViewController {
 
-    var mainView: MainViewModel!
+    var mainTableView: MainTableViewModel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        let mainView = MainViewModel(frame: self.view.frame)
-        self.view.addSubview(mainView)
+        let mainTableViewFrame = CGRect(x: 0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.9)
         
-//        for _ in 0...9 {
-//            
-//            let tempid = Int(arc4random())
-//            
-//            fakeData["uid"] = tempid
-//            
-//            let user = UserProfile(data: fakeData)
-//            
-//            FirebaseAPI.addProfile(profile: user)
-//            
-//        }
+        let mainTableView = MainTableViewModel(frame: mainTableViewFrame)
+        self.view.addSubview(mainTableView)
+        
+        for _ in 0...9 {
+            
+            let id = Int(arc4random())
+            
+            fakeData["uid"] = id
+            
+            let user = UserProfile(data: fakeData)
+            
+            FirebaseAPI.addProfile(profile: user)
+            
+        }
         
         FirebaseAPI.readUserList { (data) in
             
@@ -47,7 +49,7 @@ class MainViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-                    mainView.tableView.reloadData()
+                    mainTableView.tableView.reloadData()
                     
                 }
                 
@@ -58,10 +60,10 @@ class MainViewController: UIViewController {
         FirebaseAPI.observeAddedProfiles { (data) in
             
             DataOrganizer.shared.addProfile(with: data)
-            dump(data)
+            
             DispatchQueue.main.async {
                 
-                mainView.tableView.reloadData()
+                mainTableView.tableView.reloadData()
                 
             }
             
@@ -73,9 +75,22 @@ class MainViewController: UIViewController {
 
             DispatchQueue.main.async {
                 
-                mainView.tableView.reloadData()
+                mainTableView.tableView.reloadData()
                 
             }
+            
+        }
+        
+        FirebaseAPI.observeChangedProfiles { (data) in
+            
+            DataOrganizer.shared.editProfile(with: data)
+            
+            DispatchQueue.main.async {
+                
+                mainTableView.tableView.reloadData()
+                
+            }
+            
             
         }
         

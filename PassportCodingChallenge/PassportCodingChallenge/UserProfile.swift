@@ -23,7 +23,7 @@ struct UserProfile {
     var hobbies: String = ""
     
     var image: UIImage?
-    var backgroundColor: UIColor?
+    var backgroundColor: String?
     
     init(data: [String : Any]) {
         
@@ -31,17 +31,40 @@ struct UserProfile {
             let gender = data["gender"] as? Int,
             let name = data["name"] as? String,
             let age = data["age"] as? Int,
-            let hobbies = data["hobbies"] as? String {
+            let hobbies = data["hobbies"] as? String{
             
             self.uid = uid
             self.gender = gender == 0 ? .male : .female
-            self.backgroundColor = gender == 0 ? UIColor.blue : UIColor.green
             self.name = name
             self.age = age
             self.hobbies = hobbies
+            
+            if let color = data["color"] as? String {
+                
+                self.backgroundColor = color
+                
+            } else {
+                
+                self.backgroundColor = gender == 0 ? "0x0000FF" : "0x00FF00"
+                
+            }
                 
         }
 
+    }
+    
+    func getHexString() -> String {
+        
+        var hexString = "0x000000"
+      
+        if let color = backgroundColor {
+            
+            hexString = color
+            
+        }
+        print(hexString)
+        return hexString
+        
     }
     
 }
