@@ -25,15 +25,15 @@ struct UserProfile {
     var image: UIImage?
     var backgroundColor: UIColor?
     
-    init(id: Int, data: [String : Any]) {
+    init(data: [String : Any]) {
         
-        self.uid = id
-        
-        if let gender = data["gender"] as? Int,
+        if let uid = data["uid"] as? Int,
+            let gender = data["gender"] as? Int,
             let name = data["name"] as? String,
             let age = data["age"] as? Int,
             let hobbies = data["hobbies"] as? String {
             
+            self.uid = uid
             self.gender = gender == 0 ? .male : .female
             self.backgroundColor = gender == 0 ? UIColor.blue : UIColor.green
             self.name = name

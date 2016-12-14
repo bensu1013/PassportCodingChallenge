@@ -14,7 +14,7 @@ fileprivate let reuseIdentifier = "profileCell"
 class MainViewModel: UIView {
     
     var tableView = UITableView()
-    
+    var tempid = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,8 +27,22 @@ class MainViewModel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        tempid = Int(arc4random())
+        
+        fakeData["uid"] = tempid
+        
+        FirebaseAPI.addProfile(profile: UserProfile(data: fakeData))
+        
+        
+    }
     
-    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        FirebaseAPI.removeProfile(id: tempid)
+        
+    }
     
 }
 
@@ -45,6 +59,7 @@ extension MainViewModel: UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.backgroundColor = UIColor.blue
+        tableView.isUserInteractionEnabled = false
         
     }
     
@@ -62,8 +77,10 @@ extension MainViewModel: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.backgroundColor = UIColor.cyan
-        cell.textLabel?.text = "\(DataOrganizer.shared.peekProfiles()[indexPath.row].uid)"
+        let user = DataOrganizer.shared.peekProfiles()[indexPath.row]
+        
+        cell.backgroundColor = user.backgroundColor
+        cell.textLabel?.text = "\(user.uid)"
         
         return cell
         

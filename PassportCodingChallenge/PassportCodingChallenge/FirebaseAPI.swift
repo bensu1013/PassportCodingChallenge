@@ -13,9 +13,10 @@ struct FirebaseAPI {
     
     static let ref = FIRDatabase.database().reference()
     
-    static func streamList(handler: @escaping ([String : Any]?) -> () ) {
+    //Read profile list from firebase when app loads
+    static func readUserList(handler: @escaping ([String : Any]?) -> () ) {
         
-        ref.observe(.value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let data = snapshot.value as? [String : Any] {
                 
@@ -31,6 +32,37 @@ struct FirebaseAPI {
         
     }
     
+    //Observe for added objects through out apps life time
+    static func observeAddedProfiles(handler: @escaping ([String : Any]) -> () ) {
+        
+        ref.observe(.childAdded, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String : Any] {
+                
+                handler(data)
+                
+            }
+            
+        })
+        
+    }
+    
+    //Observe for removed objects through out the apps life time
+    static func observeRemovedProfiles(handler: @escaping ([String : Any]) -> () ) {
+        
+        ref.observe(.childRemoved, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String : Any] {
+                
+                handler(data)
+                
+            }
+            
+        })
+        
+    }
+    
+    //Write to firebase a new user profile
     static func addProfile(profile: UserProfile) {
         
         let firebaseData = createFirebaseData(with: profile)
@@ -39,10 +71,12 @@ struct FirebaseAPI {
         
     }
     
+    //Wraps userprofile in to dictionary to send to firebase
     private static func createFirebaseData(with profile: UserProfile) -> [String : Any] {
         
         var returnData: [String : Any] = [:]
         
+        returnData["uid"] = profile.uid
         returnData["name"] = profile.name
         returnData["age"] = profile.age
         returnData["gender"] = profile.gender.rawValue
@@ -51,6 +85,7 @@ struct FirebaseAPI {
         return returnData
     }
     
+    //Remove profile from firebase with ID in argument
     static func removeProfile(id: Int) {
         
         ref.child("\(id)").removeValue()

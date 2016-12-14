@@ -8,7 +8,9 @@
 
 import UIKit
 
-let fakeData: [String : Any] = ["name" : "Ross",
+var fakeData: [String : Any] = [
+                "uid" : 0,
+                "name" : "Ross",
                 "age" : 20,
                 "gender" : 0,
                 "hobbies" : "nothing great"]
@@ -25,18 +27,19 @@ class MainViewController: UIViewController {
         let mainView = MainViewModel(frame: self.view.frame)
         self.view.addSubview(mainView)
         
-//        for _ in 0...10 {
+//        for _ in 0...9 {
 //            
-//            let user = UserProfile(id: Int(arc4random()), data: fakeData)
+//            let tempid = Int(arc4random())
+//            
+//            fakeData["uid"] = tempid
+//            
+//            let user = UserProfile(data: fakeData)
 //            
 //            FirebaseAPI.addProfile(profile: user)
 //            
-//            
 //        }
         
-        
-        
-        FirebaseAPI.streamList { (data) in
+        FirebaseAPI.readUserList { (data) in
             
             if data != nil {
                 
@@ -49,14 +52,36 @@ class MainViewController: UIViewController {
                 }
                 
             }
+        
+        }
+        
+        FirebaseAPI.observeAddedProfiles { (data) in
             
-            
-            
+            DataOrganizer.shared.addProfile(with: data)
+            dump(data)
+            DispatchQueue.main.async {
+                
+                mainView.tableView.reloadData()
+                
+            }
             
         }
+        
+        FirebaseAPI.observeRemovedProfiles { (data) in
+       
+            DataOrganizer.shared.removeProfile(with: data)
+
+            DispatchQueue.main.async {
+                
+                mainView.tableView.reloadData()
+                
+            }
+            
+        }
+        
     }
 
-
+    
 
     
 
