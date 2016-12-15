@@ -17,12 +17,18 @@ class DataOrganizer {
     fileprivate var profiles: [UserProfile] = []
     fileprivate var sortedProfiles: [UserProfile] = []
     fileprivate var isFiltered = false
+    fileprivate var observeIndex = 0
     static var shared = DataOrganizer()
     
-    
+    var peekDetailProfile: UserProfile { get { return isFiltered ? sortedProfiles[observeIndex] : profiles[observeIndex] } }
     var peekProfiles: [UserProfile] { get { return isFiltered ? sortedProfiles : profiles } }
     
-    
+    //Set observeindex when cell selection happens
+    func setObserverIndex(at: Int) {
+        
+        observeIndex = at
+        
+    }
     
     //Called when app opens, pulls all existing profiles
     func storeProfiles(with data: [String : Any]) {
@@ -64,6 +70,7 @@ class DataOrganizer {
         
     }
     
+    //Method used to edit a profile
     func editProfile(with data: [String : Any]) {
         
         let profile = UserProfile(data: data)

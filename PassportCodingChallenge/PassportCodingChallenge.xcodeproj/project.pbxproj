@@ -18,9 +18,13 @@
 		B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD01E00A8D60016833F /* FirebaseAPI.swift */; };
 		B5181AD31E01D91A0016833F /* MainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */; };
 		B5181AD51E01E9120016833F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD41E01E9120016833F /* Extensions.swift */; };
+		B550DF911E02E64D00F81190 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B550DF901E02E64D00F81190 /* Constants.swift */; };
+		B550DF931E02E83200F81190 /* ListNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B550DF921E02E83200F81190 /* ListNavBar.swift */; };
+		B550DF951E02E92B00F81190 /* SorterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B550DF941E02E92B00F81190 /* SorterView.swift */; };
+		B550DF971E02E94900F81190 /* AddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B550DF961E02E94900F81190 /* AddProfileView.swift */; };
 		FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FE81E00D1660090C291 /* DataOrganizer.swift */; };
 		FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */; };
-		FDCA9F301E022714009C8E49 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */; };
+		FDCA9F301E022714009C8E49 /* DetailNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F2F1E022714009C8E49 /* DetailNavBar.swift */; };
 		FDCA9F351E022B2A009C8E49 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F341E022B2A009C8E49 /* GuideView.swift */; };
 		FDCA9F371E022BD4009C8E49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F361E022BD4009C8E49 /* DetailViewController.swift */; };
 		FDCA9F3A1E022CA5009C8E49 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F391E022CA5009C8E49 /* DetailView.swift */; };
@@ -42,9 +46,13 @@
 		B5181AD01E00A8D60016833F /* FirebaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAPI.swift; sourceTree = "<group>"; };
 		B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewTableViewCell.swift; sourceTree = "<group>"; };
 		B5181AD41E01E9120016833F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B550DF901E02E64D00F81190 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B550DF921E02E83200F81190 /* ListNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListNavBar.swift; sourceTree = "<group>"; };
+		B550DF941E02E92B00F81190 /* SorterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SorterView.swift; sourceTree = "<group>"; };
+		B550DF961E02E94900F81190 /* AddProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProfileView.swift; sourceTree = "<group>"; };
 		FD054FE81E00D1660090C291 /* DataOrganizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOrganizer.swift; sourceTree = "<group>"; };
 		FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewModel.swift; sourceTree = "<group>"; };
-		FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		FDCA9F2F1E022714009C8E49 /* DetailNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNavBar.swift; sourceTree = "<group>"; };
 		FDCA9F341E022B2A009C8E49 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		FDCA9F361E022BD4009C8E49 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FDCA9F391E022CA5009C8E49 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -113,8 +121,11 @@
 		FD054FEC1E00D31B0090C291 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				B550DF921E02E83200F81190 /* ListNavBar.swift */,
 				FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */,
 				B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */,
+				B550DF961E02E94900F81190 /* AddProfileView.swift */,
+				B550DF941E02E92B00F81190 /* SorterView.swift */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			children = (
 				B5181AD01E00A8D60016833F /* FirebaseAPI.swift */,
 				B5181AD41E01E9120016833F /* Extensions.swift */,
+				B550DF901E02E64D00F81190 /* Constants.swift */,
 				B5181ABE1E00778E0016833F /* Main.storyboard */,
 				B5181AC31E00778E0016833F /* LaunchScreen.storyboard */,
 				B5181AC11E00778E0016833F /* Assets.xcassets */,
@@ -145,7 +157,6 @@
 		FDCA9F331E0227E1009C8E49 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */,
 				FDCA9F341E022B2A009C8E49 /* GuideView.swift */,
 				FD054FEC1E00D31B0090C291 /* MainView */,
 				FDCA9F381E022C82009C8E49 /* DetailView */,
@@ -156,6 +167,7 @@
 		FDCA9F381E022C82009C8E49 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				FDCA9F2F1E022714009C8E49 /* DetailNavBar.swift */,
 				FDCA9F391E022CA5009C8E49 /* DetailView.swift */,
 			);
 			name = DetailView;
@@ -287,12 +299,16 @@
 			files = (
 				FDCA9F371E022BD4009C8E49 /* DetailViewController.swift in Sources */,
 				FDCA9F3A1E022CA5009C8E49 /* DetailView.swift in Sources */,
+				B550DF951E02E92B00F81190 /* SorterView.swift in Sources */,
 				B5181ABD1E00778E0016833F /* MainViewController.swift in Sources */,
+				B550DF971E02E94900F81190 /* AddProfileView.swift in Sources */,
 				FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */,
 				B5181ABB1E00778E0016833F /* AppDelegate.swift in Sources */,
 				B5181AD51E01E9120016833F /* Extensions.swift in Sources */,
 				B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */,
-				FDCA9F301E022714009C8E49 /* NavigationBar.swift in Sources */,
+				B550DF931E02E83200F81190 /* ListNavBar.swift in Sources */,
+				B550DF911E02E64D00F81190 /* Constants.swift in Sources */,
+				FDCA9F301E022714009C8E49 /* DetailNavBar.swift in Sources */,
 				B5181AD31E01D91A0016833F /* MainViewTableViewCell.swift in Sources */,
 				B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */,
 				FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */,

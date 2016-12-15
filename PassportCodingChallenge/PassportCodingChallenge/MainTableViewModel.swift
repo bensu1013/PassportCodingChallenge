@@ -81,6 +81,7 @@ extension MainTableViewModel: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        DataOrganizer.shared.setObserverIndex(at: indexPath.row)
         delegate.segueAction()
         
     }

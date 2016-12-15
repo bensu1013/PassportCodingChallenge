@@ -18,32 +18,65 @@ var fakeData: [String : Any] = [
 class MainViewController: UIViewController {
 
     var mainTableView: MainTableViewModel!
-    var navBar: NavigationBar!
+    var navBar: ListNavBar!
+    var sortView: SorterView!
+    var addProfileView: AddProfileView!
+    
+    var isSorting = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        createNavBar()
+        createTableView()
+        createSortView()
+    
+        prepareFirebaseObservers()
+        
+    }
+
+    
+    
+}
+
+//MARK: - Setup subviews for mainview controller
+extension MainViewController {
+    
+    func createNavBar() {
+        
+        let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
+        navBar = ListNavBar(frame: navFrame)
+        navBar.delegate = self
+        navBar.backgroundColor = UIColor.cyan
+        self.view.addSubview(navBar)
+        
+    }
+    
+    func createTableView() {
         
         let mainTableViewFrame = CGRect(x: 0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.9)
         mainTableView = MainTableViewModel(frame: mainTableViewFrame)
         mainTableView.delegate = self
         self.view.addSubview(mainTableView)
         
-        let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
-        navBar = NavigationBar(frame: navFrame)
-        navBar.backgroundColor = UIColor.cyan
-        self.view.addSubview(navBar)
+    }
+    
+    func createSortView() {
         
-//        for _ in 0...9 {
-//            
-//            let id = Int(arc4random())
-//            
-//            fakeData["uid"] = id
-//            
-//            let user = UserProfile(data: fakeData)
-//            
-//            FirebaseAPI.addProfile(profile: user)
-//            
-//        }
+        let sortViewFrame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
+        sortView = SorterView(frame: sortViewFrame)
+        self.view.addSubview(sortView)
+        
+    }
+    
+    
+    
+}
+
+//MARK: - Firebase observer set up
+extension MainViewController {
+    
+    func prepareFirebaseObservers() {
         
         FirebaseAPI.readUserList { (data) in
             
@@ -58,7 +91,7 @@ class MainViewController: UIViewController {
                 }
                 
             }
-        
+            
         }
         
         FirebaseAPI.observeAddedProfiles { (data) in
@@ -74,9 +107,9 @@ class MainViewController: UIViewController {
         }
         
         FirebaseAPI.observeRemovedProfiles { (data) in
-       
+            
             DataOrganizer.shared.removeProfile(with: data)
-
+            
             DispatchQueue.main.async {
                 
                 self.mainTableView.tableView.reloadData()
@@ -95,21 +128,53 @@ class MainViewController: UIViewController {
                 
             }
             
-            
         }
         
     }
-
     
-
 }
 
+//MARK: - MainTableViewDelegate and methods
 extension MainViewController: MainTableViewDelegate {
     
     func segueAction() {
         
         performSegue(withIdentifier: "profileDetailSegue", sender: nil)
         
+    }
+    
+}
+
+//MARK: - ListNavBarDelegate and methods
+extension MainViewController: ListNavBarDelegate {
+    
+    func addButtonTapped() {
+        print("ADDDDDd")
+    }
+    
+    func sortButtonTapped() {
+        
+        if isSorting {
+            
+            isSorting = false
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                let sortViewFrame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
+                self.sortView.frame = sortViewFrame
+                
+            })
+            
+        } else {
+            
+            isSorting = true
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                let sortViewFrame = CGRect(x: self.view.bounds.width * 0.7, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
+                self.sortView.frame = sortViewFrame
+                
+            })
+        }
+
     }
     
 }

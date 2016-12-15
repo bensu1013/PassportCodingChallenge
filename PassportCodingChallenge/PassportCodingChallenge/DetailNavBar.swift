@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-class NavigationBar: UIView {
+class DetailNavBar: UIView {
     
-    
-    
-    
+    //Subviews for detailView
+    var backButton = UIButton()
+    var removeButton = UIButton()
+    var updateButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +25,6 @@ class NavigationBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
 }
+
+
