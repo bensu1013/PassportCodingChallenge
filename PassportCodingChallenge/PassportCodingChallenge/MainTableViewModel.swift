@@ -50,7 +50,7 @@ extension MainTableViewModel: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainViewTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.lightGray
         
     }
     

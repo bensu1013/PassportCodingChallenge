@@ -23,13 +23,15 @@ class MainViewController: UIViewController {
     var addProfileView: AddProfileView!
     
     var isSorting = false
+    var isAdding = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createNavBar()
         createTableView()
         createSortView()
+        createAddView()
+        createNavBar()
         
         prepareFirebaseObservers()
         
@@ -61,16 +63,6 @@ class MainViewController: UIViewController {
 //MARK: - Setup subviews for mainview controller
 extension MainViewController {
     
-    func createNavBar() {
-        
-        let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
-        navBar = ListNavBar(frame: navFrame)
-        navBar.delegate = self
-        navBar.backgroundColor = UIColor.cyan
-        self.view.addSubview(navBar)
-        
-    }
-    
     func createTableView() {
         
         let mainTableViewFrame = CGRect(x: 0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.9)
@@ -89,7 +81,25 @@ extension MainViewController {
         
     }
     
+    func createAddView() {
+        
+        let addViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * -0.5, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+        
+        addProfileView = AddProfileView(frame: addViewFrame)
+        addProfileView.delegate = self
+        self.view.addSubview(addProfileView)
+        
+    }
     
+    func createNavBar() {
+        
+        let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
+        navBar = ListNavBar(frame: navFrame)
+        navBar.delegate = self
+        navBar.backgroundColor = UIColor.cyan
+        self.view.addSubview(navBar)
+        
+    }
     
 }
 
@@ -157,34 +167,81 @@ extension MainViewController: MainTableViewDelegate {
 extension MainViewController: ListNavBarDelegate {
     
     func addButtonTapped() {
-        print("ADDDDDd")
+        
+        hideSortView()
+        
+        if isAdding {
+            
+            hideAddView()
+            
+        } else {
+            
+            showAddView()
+            
+        }
+        
+        
+    }
+    
+    private func hideAddView() {
+        
+        isAdding = false
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let addViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * -0.5, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+            self.addProfileView.frame = addViewFrame
+            
+        })
+        
+    }
+    
+    private func showAddView() {
+        
+        isAdding = true
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let addViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+            self.addProfileView.frame = addViewFrame
+            
+        })
+        
     }
     
     func sortButtonTapped() {
         
+        hideAddView()
+        
         if isSorting {
             
-            isSorting = false
-            UIView.animate(withDuration: 0.3, animations: {
-                
-                let sortViewFrame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
-                self.sortView.frame = sortViewFrame
-                
-            })
+            hideSortView()
             
         } else {
             
-            isSorting = true
-            UIView.animate(withDuration: 0.3, animations: {
-                
-                let sortViewFrame = CGRect(x: self.view.bounds.width * 0.7, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
-                self.sortView.frame = sortViewFrame
-                
-            })
+            showSortView()
+            
         }
 
     }
     
+    private func hideSortView() {
+        isSorting = false
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let sortViewFrame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
+            self.sortView.frame = sortViewFrame
+            
+        })
+    }
+    
+    private func showSortView() {
+        isSorting = true
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let sortViewFrame = CGRect(x: self.view.bounds.width * 0.7, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
+            self.sortView.frame = sortViewFrame
+            
+        })
+    }
 }
 
 //MARK: - SorterViewDelegate and methods
@@ -194,6 +251,17 @@ extension MainViewController: SorterViewDelegate {
         
         mainTableView.tableView.reloadData()
     
+    }
+    
+}
+
+//MARK: - AddProfileDelegate and methods
+extension MainViewController: AddProfileDelegate {
+    
+    func dismissAddView() {
+        
+        addButtonTapped()
+        
     }
     
 }
