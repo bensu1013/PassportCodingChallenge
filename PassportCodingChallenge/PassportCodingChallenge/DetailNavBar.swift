@@ -38,11 +38,15 @@ class DetailNavBar: UIView {
     }
     
     func backButtonAction() {
+        
         delegate.backButtonTapped()
+        
     }
     
     func updateButtonAction() {
+        
         delegate.updateButtonTapped()
+        
     }
     func removeButtonAction() {
 

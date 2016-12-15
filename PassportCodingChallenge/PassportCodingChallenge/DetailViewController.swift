@@ -9,9 +9,12 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     var detailView: DetailView!
+    var updateView: UpdateView!
     var navBar: DetailNavBar!
+    
+    var isUpdating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,11 @@ class DetailViewController: UIViewController {
         detailView = DetailView(frame: detailViewFrame)
         self.view.addSubview(detailView)
     
+        let updateViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * -0.5, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+        updateView = UpdateView(frame: updateViewFrame)
+        updateView.delegate = self
+        updateView.isHidden = true
+        self.view.addSubview(updateView)
         
         let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
         navBar = DetailNavBar(frame: navFrame)
@@ -32,6 +40,11 @@ class DetailViewController: UIViewController {
 
 }
 
+extension DetailViewController: UpdateViewDelegate {
+    
+    
+    
+}
 
 extension DetailViewController: DetailNavBarDelegate {
     
@@ -43,10 +56,43 @@ extension DetailViewController: DetailNavBarDelegate {
     
     func updateButtonTapped() {
         
-        
+        if isUpdating {
+            
+            hideUpdateView()
+            
+        } else {
+            
+            showUpdateView()
+            
+        }
         
     }
     
+    private func hideUpdateView() {
+        
+        isUpdating = false
+        updateView.isHidden = true
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let updateViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * -0.5, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+            self.updateView.frame = updateViewFrame
+            
+        })
+        
+    }
+    
+    private func showUpdateView() {
+        
+        isUpdating = true
+        updateView.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            let updateViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
+            self.updateView.frame = updateViewFrame
+            
+        })
+        
+    }
     func removeButtonTapped() {
         
         FirebaseAPI.removeProfile(id: detailView.user.uid)

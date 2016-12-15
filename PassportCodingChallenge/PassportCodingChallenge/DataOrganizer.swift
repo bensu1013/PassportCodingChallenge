@@ -41,12 +41,12 @@ class DataOrganizer {
         profiles.removeAll()
         
         for (_, v) in data {
-          
+          print(1)
             if let user = v as? [String : Any] {
-                
+                print(2)
                 let profile = UserProfile(data: user)
                 binarySort(byUID: profile)
-
+                print("\(profiles.count)")
             }
             
         }

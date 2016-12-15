@@ -17,7 +17,7 @@ enum Gender: Int {
 
 enum BackgroundColor: Int {
     
-    case blue, green, red, white, orange, cyan
+    case blue, green, red, orange, cyan
     
     func getColor() -> UIColor {
         switch self {
@@ -27,8 +27,6 @@ enum BackgroundColor: Int {
             return UIColor.green
         case .red:
             return UIColor.red
-        case .white:
-            return UIColor.white
         case .orange:
             return UIColor.orange
         case .cyan:

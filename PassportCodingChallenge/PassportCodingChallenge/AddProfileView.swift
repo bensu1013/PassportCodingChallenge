@@ -12,7 +12,7 @@ import UIKit
 protocol AddProfileDelegate {
     
     func dismissAddView()
-    
+    func showAlertMessage(alert: UIAlertController)
 }
 
 class AddProfileView: UIView {
@@ -74,6 +74,10 @@ class AddProfileView: UIView {
         } else {
             
             
+            let alert = UIAlertController(title: "Incomplete", message: "Please fill in all fields", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            alert.addAction(action)
+            delegate.showAlertMessage(alert: alert)
             
         }
         
@@ -199,6 +203,7 @@ extension AddProfileView {
         self.addSubview(doneButton)
         doneButton.frame = CGRect(x: self.bounds.width * 0.35, y: self.bounds.height * 0.85, width: self.bounds.width * 0.3, height: self.bounds.height * 0.1)
         doneButton.backgroundColor = UIColor.green
+        doneButton.setTitle("Done", for: .normal)
         doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
         
     }

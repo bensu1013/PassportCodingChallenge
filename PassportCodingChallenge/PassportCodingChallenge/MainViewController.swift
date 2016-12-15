@@ -264,4 +264,10 @@ extension MainViewController: AddProfileDelegate {
         
     }
     
+    func showAlertMessage(alert: UIAlertController) {
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
