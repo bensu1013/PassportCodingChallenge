@@ -18,15 +18,20 @@ var fakeData: [String : Any] = [
 class MainViewController: UIViewController {
 
     var mainTableView: MainTableViewModel!
-    
+    var navBar: NavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let mainTableViewFrame = CGRect(x: 0, y: self.view.bounds.height * 0.1, width: self.view.bounds.width, height: self.view.bounds.height * 0.9)
-        
-        let mainTableView = MainTableViewModel(frame: mainTableViewFrame)
+        mainTableView = MainTableViewModel(frame: mainTableViewFrame)
+        mainTableView.delegate = self
         self.view.addSubview(mainTableView)
+        
+        let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
+        navBar = NavigationBar(frame: navFrame)
+        navBar.backgroundColor = UIColor.cyan
+        self.view.addSubview(navBar)
         
 //        for _ in 0...9 {
 //            
@@ -48,7 +53,7 @@ class MainViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
-                    mainTableView.tableView.reloadData()
+                    self.mainTableView.tableView.reloadData()
                     
                 }
                 
@@ -62,7 +67,7 @@ class MainViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                mainTableView.tableView.reloadData()
+                self.mainTableView.tableView.reloadData()
                 
             }
             
@@ -74,7 +79,7 @@ class MainViewController: UIViewController {
 
             DispatchQueue.main.async {
                 
-                mainTableView.tableView.reloadData()
+                self.mainTableView.tableView.reloadData()
                 
             }
             
@@ -86,7 +91,7 @@ class MainViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                mainTableView.tableView.reloadData()
+                self.mainTableView.tableView.reloadData()
                 
             }
             
@@ -97,8 +102,14 @@ class MainViewController: UIViewController {
 
     
 
-    
-
-
 }
 
+extension MainViewController: MainTableViewDelegate {
+    
+    func segueAction() {
+        
+        performSegue(withIdentifier: "profileDetailSegue", sender: nil)
+        
+    }
+    
+}

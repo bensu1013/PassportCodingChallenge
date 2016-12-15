@@ -73,7 +73,6 @@ struct UserProfile {
 
                 }
                 
-                
             } else {
                 
                 self.userColor = gender == 0 ? .blue : .green

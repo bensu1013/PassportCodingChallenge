@@ -22,6 +22,8 @@ class DataOrganizer {
     
     var peekProfiles: [UserProfile] { get { return isFiltered ? sortedProfiles : profiles } }
     
+    
+    
     //Called when app opens, pulls all existing profiles
     func storeProfiles(with data: [String : Any]) {
 

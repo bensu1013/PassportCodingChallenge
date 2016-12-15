@@ -10,11 +10,19 @@ import Foundation
 import UIKit
 
 fileprivate let reuseIdentifier = "profileCell"
+fileprivate let segueIdentifier = "profileDetailSegue"
+
+protocol MainTableViewDelegate: class {
+    
+    func segueAction()
+    
+}
 
 class MainTableViewModel: UIView {
     
     var tableView = UITableView()
     var tempid = 0
+    var delegate: MainTableViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,6 +79,11 @@ extension MainTableViewModel: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        delegate.segueAction()
+        
+    }
     
     
 }

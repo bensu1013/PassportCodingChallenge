@@ -20,6 +20,10 @@
 		B5181AD51E01E9120016833F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181AD41E01E9120016833F /* Extensions.swift */; };
 		FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FE81E00D1660090C291 /* DataOrganizer.swift */; };
 		FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */; };
+		FDCA9F301E022714009C8E49 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */; };
+		FDCA9F351E022B2A009C8E49 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F341E022B2A009C8E49 /* GuideView.swift */; };
+		FDCA9F371E022BD4009C8E49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F361E022BD4009C8E49 /* DetailViewController.swift */; };
+		FDCA9F3A1E022CA5009C8E49 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA9F391E022CA5009C8E49 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		B5181AD41E01E9120016833F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FD054FE81E00D1660090C291 /* DataOrganizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataOrganizer.swift; sourceTree = "<group>"; };
 		FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewModel.swift; sourceTree = "<group>"; };
+		FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		FDCA9F341E022B2A009C8E49 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		FDCA9F361E022BD4009C8E49 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FDCA9F391E022CA5009C8E49 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,16 +101,11 @@
 			isa = PBXGroup;
 			children = (
 				B5181ABA1E00778E0016833F /* AppDelegate.swift */,
-				FD054FEC1E00D31B0090C291 /* MainView */,
-				B5181ACE1E00A7C50016833F /* UserProfile.swift */,
-				B5181AD01E00A8D60016833F /* FirebaseAPI.swift */,
-				FD054FE81E00D1660090C291 /* DataOrganizer.swift */,
-				B5181AD41E01E9120016833F /* Extensions.swift */,
-				B5181ABE1E00778E0016833F /* Main.storyboard */,
-				B5181AC11E00778E0016833F /* Assets.xcassets */,
-				B5181AC31E00778E0016833F /* LaunchScreen.storyboard */,
-				B5181AC61E00778E0016833F /* Info.plist */,
-				B5181ACC1E00A7680016833F /* GoogleService-Info.plist */,
+				B5181ABC1E00778E0016833F /* MainViewController.swift */,
+				FDCA9F361E022BD4009C8E49 /* DetailViewController.swift */,
+				FDCA9F331E0227E1009C8E49 /* View */,
+				FDCA9F311E02271D009C8E49 /* Model */,
+				FDCA9F321E0227C3009C8E49 /* SupportFiles */,
 			);
 			path = PassportCodingChallenge;
 			sourceTree = "<group>";
@@ -110,11 +113,52 @@
 		FD054FEC1E00D31B0090C291 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				B5181ABC1E00778E0016833F /* MainViewController.swift */,
 				FD054FEA1E00D3110090C291 /* MainTableViewModel.swift */,
 				B5181AD21E01D91A0016833F /* MainViewTableViewCell.swift */,
 			);
 			name = MainView;
+			sourceTree = "<group>";
+		};
+		FDCA9F311E02271D009C8E49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FD054FE81E00D1660090C291 /* DataOrganizer.swift */,
+				B5181ACE1E00A7C50016833F /* UserProfile.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FDCA9F321E0227C3009C8E49 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B5181AD01E00A8D60016833F /* FirebaseAPI.swift */,
+				B5181AD41E01E9120016833F /* Extensions.swift */,
+				B5181ABE1E00778E0016833F /* Main.storyboard */,
+				B5181AC31E00778E0016833F /* LaunchScreen.storyboard */,
+				B5181AC11E00778E0016833F /* Assets.xcassets */,
+				B5181AC61E00778E0016833F /* Info.plist */,
+				B5181ACC1E00A7680016833F /* GoogleService-Info.plist */,
+			);
+			name = SupportFiles;
+			sourceTree = "<group>";
+		};
+		FDCA9F331E0227E1009C8E49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDCA9F2F1E022714009C8E49 /* NavigationBar.swift */,
+				FDCA9F341E022B2A009C8E49 /* GuideView.swift */,
+				FD054FEC1E00D31B0090C291 /* MainView */,
+				FDCA9F381E022C82009C8E49 /* DetailView */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FDCA9F381E022C82009C8E49 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				FDCA9F391E022CA5009C8E49 /* DetailView.swift */,
+			);
+			name = DetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,14 +285,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDCA9F371E022BD4009C8E49 /* DetailViewController.swift in Sources */,
+				FDCA9F3A1E022CA5009C8E49 /* DetailView.swift in Sources */,
 				B5181ABD1E00778E0016833F /* MainViewController.swift in Sources */,
 				FD054FE91E00D1660090C291 /* DataOrganizer.swift in Sources */,
 				B5181ABB1E00778E0016833F /* AppDelegate.swift in Sources */,
 				B5181AD51E01E9120016833F /* Extensions.swift in Sources */,
 				B5181ACF1E00A7C50016833F /* UserProfile.swift in Sources */,
+				FDCA9F301E022714009C8E49 /* NavigationBar.swift in Sources */,
 				B5181AD31E01D91A0016833F /* MainViewTableViewCell.swift in Sources */,
 				B5181AD11E00A8D60016833F /* FirebaseAPI.swift in Sources */,
 				FD054FEB1E00D3110090C291 /* MainTableViewModel.swift in Sources */,
+				FDCA9F351E022B2A009C8E49 /* GuideView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
