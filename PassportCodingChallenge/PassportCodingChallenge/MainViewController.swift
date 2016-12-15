@@ -13,8 +13,7 @@ var fakeData: [String : Any] = [
                 "name" : "Ross",
                 "age" : 20,
                 "gender" : 0,
-                "hobbies" : "nothing great",
-                "color" : "0xFFFFFF"]
+                "hobbies" : "nothing great"]
 
 class MainViewController: UIViewController {
 
@@ -29,17 +28,17 @@ class MainViewController: UIViewController {
         let mainTableView = MainTableViewModel(frame: mainTableViewFrame)
         self.view.addSubview(mainTableView)
         
-        for _ in 0...9 {
-            
-            let id = Int(arc4random())
-            
-            fakeData["uid"] = id
-            
-            let user = UserProfile(data: fakeData)
-            
-            FirebaseAPI.addProfile(profile: user)
-            
-        }
+//        for _ in 0...9 {
+//            
+//            let id = Int(arc4random())
+//            
+//            fakeData["uid"] = id
+//            
+//            let user = UserProfile(data: fakeData)
+//            
+//            FirebaseAPI.addProfile(profile: user)
+//            
+//        }
         
         FirebaseAPI.readUserList { (data) in
             

@@ -13,6 +13,27 @@ enum Gender: Int {
     case male, female
 }
 
+enum BackgroundColor: Int {
+    case blue, green, red, white, orange, cyan
+    
+    func getColor() -> UIColor {
+        switch self {
+        case .blue:
+            return UIColor.blue
+        case .green:
+            return UIColor.green
+        case .red:
+            return UIColor.red
+        case .white:
+            return UIColor.white
+        case .orange:
+            return UIColor.orange
+        case .cyan:
+            return UIColor.cyan
+        }
+    }
+    
+}
 
 struct UserProfile {
     
@@ -23,7 +44,12 @@ struct UserProfile {
     var hobbies: String = ""
     
     var image: UIImage?
-    var backgroundColor: String?
+    var userColor: BackgroundColor = .blue
+    var backgroundColor: UIColor {
+        get {
+            return userColor.getColor()
+        }
+    }
     
     init(data: [String : Any]) {
         
@@ -39,32 +65,23 @@ struct UserProfile {
             self.age = age
             self.hobbies = hobbies
             
-            if let color = data["color"] as? String {
+            if let color = data["color"] as? Int {
                 
-                self.backgroundColor = color
+                if let enumColor = BackgroundColor.init(rawValue: color) {
+                    
+                    self.userColor = enumColor
+
+                }
+                
                 
             } else {
                 
-                self.backgroundColor = gender == 0 ? "0x0000FF" : "0x00FF00"
+                self.userColor = gender == 0 ? .blue : .green
                 
             }
                 
         }
 
-    }
-    
-    func getHexString() -> String {
-        
-        var hexString = "0x000000"
-      
-        if let color = backgroundColor {
-            
-            hexString = color
-            
-        }
-        print(hexString)
-        return hexString
-        
     }
     
 }

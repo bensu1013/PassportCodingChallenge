@@ -11,35 +11,13 @@ import UIKit
 
 extension UIColor {
     
-    static func convert(from hex: Int) -> UIColor {
+    static func convert(from hex: UInt32) -> UIColor {
         
         let red = CGFloat((hex >> 16) & 0xff) / 255
         let green = CGFloat((hex >> 8) & 0xff) / 255
         let blue = CGFloat(hex & 0xff) / 255
         return UIColor.init(red: red, green: green, blue: blue, alpha: 1.0)
         
-    }
-    
-    static func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-       // if (cString.hasPrefix("0x")) {
-      //      cString.remove(at: cString.startIndex)
-      //  }
-        
-        if ((cString.characters.count) != 6) {
-            return UIColor.gray
-        }
-        
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(
-            red: CGFloat((rgbValue >> 16) & 0xff) / 255.0,
-            green: CGFloat((rgbValue >> 8) & 0xff) / 255.0,
-            blue: CGFloat(rgbValue & 0xff) / 255.0,
-            alpha: CGFloat(1.0)
-        )
     }
     
     func getHexString() -> String {

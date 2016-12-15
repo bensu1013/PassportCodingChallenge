@@ -41,10 +41,8 @@ class MainViewTableViewCell: UITableViewCell {
         
         uidLabel.text = "User ID: \(profile.uid)"
         nameLabel.text = "Name: \(profile.name)"
-        cellView.backgroundColor = UIColor.hexStringToUIColor(hex: profile.getHexString())
-        
-     //   print(cellView.backgroundColor?.getHexString())
-        
+        cellView.backgroundColor = profile.backgroundColor
+                
     }
 
 }

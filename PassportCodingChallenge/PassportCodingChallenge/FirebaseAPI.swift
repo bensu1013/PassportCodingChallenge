@@ -95,7 +95,7 @@ struct FirebaseAPI {
         returnData["age"] = profile.age
         returnData["gender"] = profile.gender.rawValue
         returnData["hobbies"] = profile.hobbies
-        returnData["color"] = profile.backgroundColor
+        returnData["color"] = profile.userColor.rawValue
         
         return returnData
     }
