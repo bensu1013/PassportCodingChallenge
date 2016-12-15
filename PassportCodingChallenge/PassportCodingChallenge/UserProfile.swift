@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 
 enum Gender: Int {
+    
     case male, female
+    
 }
 
 enum BackgroundColor: Int {
+    
     case blue, green, red, white, orange, cyan
     
     func getColor() -> UIColor {
@@ -32,7 +35,6 @@ enum BackgroundColor: Int {
             return UIColor.cyan
         }
     }
-    
 }
 
 struct UserProfile {

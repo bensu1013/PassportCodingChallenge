@@ -22,6 +22,7 @@ class MainTableViewModel: UIView {
     
     var tableView = UITableView()
     var tempid = 0
+    var hasRows = true
     var delegate: MainTableViewDelegate!
     
     override init(frame: CGRect) {
@@ -58,12 +59,38 @@ extension MainTableViewModel: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.bounds.height / 6
+        
+        let count = DataOrganizer.shared.peekProfiles.count
+        
+        if count > 0 {
+            
+            hasRows = true
+            return self.bounds.height / 6
+            
+        } else {
+            
+            hasRows = false
+            return self.bounds.height
+            
+        }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return DataOrganizer.shared.peekProfiles.count
+        let count = DataOrganizer.shared.peekProfiles.count
+        
+        if count > 0 {
+            
+            hasRows = true
+            return count
+            
+        } else {
+            
+            hasRows = false
+            return 1
+            
+        }
         
     }
     
@@ -71,9 +98,18 @@ extension MainTableViewModel: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MainViewTableViewCell
         
-        let user = DataOrganizer.shared.peekProfiles[indexPath.row]
+        if hasRows {
+            
+            let user = DataOrganizer.shared.peekProfiles[indexPath.row]
+            
+            cell.populateCellData(with: user)
+            
+        } else {
+            
+            cell.populateCellData(with: nil)
+            
+        }
         
-        cell.populateCellData(with: user)
         
         return cell
         

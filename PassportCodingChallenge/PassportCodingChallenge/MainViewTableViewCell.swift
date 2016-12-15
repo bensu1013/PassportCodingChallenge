@@ -19,6 +19,7 @@ class MainViewTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupSubviews()
+        self.selectionStyle = .none
         
     }
     
@@ -26,12 +27,22 @@ class MainViewTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func populateCellData(with profile: UserProfile) {
+    func populateCellData(with profile: UserProfile?) {
         
-        uidLabel.text = "User ID: \(profile.uid)"
-        nameLabel.text = "Name: \(profile.name)"
-        cellView.backgroundColor = profile.backgroundColor
-                
+        if profile != nil {
+            
+            uidLabel.text = "User ID: \(profile!.uid)"
+            nameLabel.text = "Name: \(profile!.name)"
+            cellView.backgroundColor = profile!.backgroundColor
+            
+        } else {
+            
+            uidLabel.text = ""
+            nameLabel.text = ""
+            cellView.backgroundColor = UIColor.gray
+            
+        }
+        
     }
 
 }

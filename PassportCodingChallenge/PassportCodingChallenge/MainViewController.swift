@@ -30,12 +30,31 @@ class MainViewController: UIViewController {
         createNavBar()
         createTableView()
         createSortView()
-    
+        
         prepareFirebaseObservers()
         
     }
 
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        FirebaseAPI.readUserList { (data) in
+            
+            if data != nil {
+                
+                DataOrganizer.shared.storeProfiles(with: data!)
+                
+                DispatchQueue.main.async {
+                    
+                    self.mainTableView.tableView.reloadData()
+                    
+                }
+                
+            }
+            
+        }
+    }
     
 }
 
@@ -65,6 +84,7 @@ extension MainViewController {
         
         let sortViewFrame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height * 0.1, width: self.view.bounds.width * 0.3, height: self.view.bounds.height * 0.9)
         sortView = SorterView(frame: sortViewFrame)
+        sortView.delegate = self
         self.view.addSubview(sortView)
         
     }
@@ -77,22 +97,6 @@ extension MainViewController {
 extension MainViewController {
     
     func prepareFirebaseObservers() {
-        
-        FirebaseAPI.readUserList { (data) in
-            
-            if data != nil {
-                
-                DataOrganizer.shared.storeProfiles(with: data!)
-                
-                DispatchQueue.main.async {
-                    
-                    self.mainTableView.tableView.reloadData()
-                    
-                }
-                
-            }
-            
-        }
         
         FirebaseAPI.observeAddedProfiles { (data) in
             
@@ -139,7 +143,11 @@ extension MainViewController: MainTableViewDelegate {
     
     func segueAction() {
         
-        performSegue(withIdentifier: "profileDetailSegue", sender: nil)
+        DispatchQueue.main.async {
+            
+            self.performSegue(withIdentifier: "profileDetailSegue", sender: nil)
+
+        }
         
     }
     
@@ -175,6 +183,17 @@ extension MainViewController: ListNavBarDelegate {
             })
         }
 
+    }
+    
+}
+
+//MARK: - SorterViewDelegate and methods
+extension MainViewController: SorterViewDelegate {
+    
+    func reloadListView() {
+        
+        mainTableView.tableView.reloadData()
+    
     }
     
 }

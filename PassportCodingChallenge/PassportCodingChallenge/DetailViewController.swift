@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
         
         let navFrame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height * 0.1)
         navBar = DetailNavBar(frame: navFrame)
+        navBar.delegate = self
         navBar.backgroundColor = UIColor.cyan
         self.view.addSubview(navBar)
     }
@@ -30,3 +31,39 @@ class DetailViewController: UIViewController {
 
 
 }
+
+
+extension DetailViewController: DetailNavBarDelegate {
+    
+    func backButtonTapped() {
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func updateButtonTapped() {
+        
+        
+        
+    }
+    
+    func removeButtonTapped() {
+        
+        FirebaseAPI.removeProfile(id: detailView.user.uid)
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+

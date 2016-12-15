@@ -10,6 +10,11 @@ import Foundation
 
 //TODO: - change isFiltered to be a enum / case for more flexibility in code
 
+enum SortDirection {
+    case ascend, descend
+}
+
+
 class DataOrganizer {
     
     private init() {}
@@ -32,7 +37,7 @@ class DataOrganizer {
     
     //Called when app opens, pulls all existing profiles
     func storeProfiles(with data: [String : Any]) {
-
+        
         profiles.removeAll()
         
         for (_, v) in data {
@@ -112,7 +117,7 @@ extension DataOrganizer {
     }
     
     //Sort profiles by age in ascending or descending order
-    func filter(ageBy ascending: Bool) {
+    func filter(ageBy direction: SortDirection) {
         
         isFiltered = true
         sortedProfiles.removeAll()
@@ -122,16 +127,16 @@ extension DataOrganizer {
             binarySort(byAge: profile)
             
         }
-        
-        if !ascending {
+        print("forward")
+        if  direction == .descend {
             
             sortedProfiles.reverse()
-            
+            print("backward")
         }
         
     }
     
-    func filter(nameBy ascending: Bool) {
+    func filter(nameBy direction: SortDirection) {
         
         isFiltered = true
         sortedProfiles.removeAll()
@@ -142,7 +147,7 @@ extension DataOrganizer {
             
         }
         
-        if !ascending {
+        if direction == .descend {
             
             sortedProfiles.reverse()
             
