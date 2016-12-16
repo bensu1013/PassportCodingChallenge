@@ -24,11 +24,18 @@ class DetailView: UIView {
         super.init(frame: frame)
         
         setupSubviews()
+        self.backgroundColor = user.backgroundColor
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func sendToFirebase(color: BackgroundColor, hobbies: String?) {
+        
+        FirebaseAPI.updateProfile(with: user.uid, color: color.rawValue, hobbies: hobbies)
+        
     }
     
 }

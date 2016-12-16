@@ -34,15 +34,30 @@ class DetailViewController: UIViewController {
         navBar.delegate = self
         navBar.backgroundColor = UIColor.cyan
         self.view.addSubview(navBar)
+        
     }
-
-
 
 }
 
 extension DetailViewController: UpdateViewDelegate {
     
+    func sendUpdateInfo(color: BackgroundColor, hobbies: String?) {
+        
+        detailView.sendToFirebase(color: color, hobbies: hobbies)
+        
+    }
     
+    func dismissUpdateView() {
+        
+        hideUpdateView()
+        
+    }
+    
+    func showAlertMessage(alert: UIAlertController) {
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
     
 }
 
@@ -68,20 +83,23 @@ extension DetailViewController: DetailNavBarDelegate {
         
     }
     
-    private func hideUpdateView() {
+    fileprivate func hideUpdateView() {
         
         isUpdating = false
-        updateView.isHidden = true
         UIView.animate(withDuration: 0.3, animations: {
             
             let updateViewFrame = CGRect(x: 0.0, y: self.view.bounds.height * -0.5, width: self.view.bounds.width, height: self.view.bounds.height * 0.5)
             self.updateView.frame = updateViewFrame
             
+        }, completion: { success in
+            
+            self.updateView.isHidden = true
+            
         })
         
     }
     
-    private func showUpdateView() {
+    fileprivate func showUpdateView() {
         
         isUpdating = true
         updateView.isHidden = false

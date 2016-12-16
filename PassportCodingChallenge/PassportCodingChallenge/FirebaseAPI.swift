@@ -76,6 +76,19 @@ struct FirebaseAPI {
         
     }
     
+    static func updateProfile(with id: Int, color: Int, hobbies: String?) {
+        
+        ref.child("\(id)").child("color").setValue(color)
+        
+        if let hobbies = hobbies {
+            
+            ref.child("\(id)").child("hobbies").setValue(hobbies)
+            
+        }
+        
+        
+    }
+    
     //Write to firebase a new user profile
     static func addProfile(profile: UserProfile) {
         

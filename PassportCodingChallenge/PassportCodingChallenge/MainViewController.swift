@@ -270,4 +270,16 @@ extension MainViewController: AddProfileDelegate {
         
     }
     
+    func showImagePicker(picker: UIImagePickerController) {
+        
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
+    func dismissImagePicker() {
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
 }

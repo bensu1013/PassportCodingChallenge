@@ -13,6 +13,10 @@ import UIKit
 
 protocol UpdateViewDelegate {
     
+    func sendUpdateInfo(color: BackgroundColor, hobbies: String?)
+    func dismissUpdateView()
+    func showAlertMessage(alert: UIAlertController)
+    
 }
 
 class UpdateView: UIView {
@@ -67,6 +71,28 @@ class UpdateView: UIView {
     
     func doneButtonAction() {
         
+        if hobbiesField.text != "" {
+            
+            self.delegate.sendUpdateInfo(color: self.selectedColor, hobbies: hobbiesField.text!)
+            self.delegate.dismissUpdateView()
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Hobbies", message: "There is no changes, is that correct?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Wait", style: .cancel, handler: nil)
+            let agreeAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                
+                self.delegate.sendUpdateInfo(color: self.selectedColor, hobbies: nil)
+                self.delegate.dismissUpdateView()
+                
+            })
+            
+            alert.addAction(cancelAction)
+            alert.addAction(agreeAction)
+            delegate.showAlertMessage(alert: alert)
+            
+        }
+        
     }
     
 }
@@ -84,6 +110,7 @@ extension UpdateView {
         createRedButton()
         createOrangeButton()
         createCyanButton()
+        createDoneButton()
         
     }
     
@@ -91,7 +118,7 @@ extension UpdateView {
         
         self.addSubview(fadeView)
         fadeView.frame = self.bounds
-        fadeView.backgroundColor = UIColor.red
+        fadeView.backgroundColor = UIColor.lightGray
         fadeView.alpha = 0.6
         
     }
@@ -161,6 +188,7 @@ extension UpdateView {
         doneButton.frame = CGRect(x: self.bounds.width * 0.35, y: self.bounds.height * 0.86, width: self.bounds.width * 0.3, height: self.bounds.height * 0.12)
         doneButton.backgroundColor = UIColor.blue
         doneButton.layer.cornerRadius = 7
+        doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
         
     }
     

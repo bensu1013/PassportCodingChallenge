@@ -9,15 +9,20 @@
 import Foundation
 import UIKit
 
+
 protocol AddProfileDelegate {
     
     func dismissAddView()
     func showAlertMessage(alert: UIAlertController)
+    func showImagePicker(picker: UIImagePickerController)
+    func dismissImagePicker()
+    
 }
 
 class AddProfileView: UIView {
     
     var delegate: AddProfileDelegate!
+    var imagePicker = UIImagePickerController()
     
     var fadeView = UIView()
     var nameField = UITextField()
@@ -36,7 +41,7 @@ class AddProfileView: UIView {
         super.init(frame: frame)
         
         setupSubviews()
-        
+        imagePicker.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +57,12 @@ class AddProfileView: UIView {
     }
     
     func imageButtonAction() {
-        print("get an image ben, do it")
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        delegate.showImagePicker(picker: imagePicker)
+        
     }
     
     func doneButtonAction() {
@@ -88,6 +98,25 @@ class AddProfileView: UIView {
         nameField.text = ""
         hobbiesField.text = ""
         ageField.text = ""
+        
+    }
+    
+}
+
+extension AddProfileView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = chosenImage
+        delegate.dismissImagePicker()
+    
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        delegate.dismissImagePicker()
         
     }
     
