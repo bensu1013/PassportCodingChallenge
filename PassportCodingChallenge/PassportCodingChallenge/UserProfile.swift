@@ -35,7 +35,7 @@ enum BackgroundColor: Int {
     }
 }
 
-struct UserProfile {
+class UserProfile {
     
     var uid: Int = 0
     var gender: Gender = .male
@@ -43,7 +43,7 @@ struct UserProfile {
     var age: Int = 0
     var hobbies: String = ""
     
-    var image: UIImage?
+    var image = UIImage()
     var userColor: BackgroundColor = .blue
     var backgroundColor: UIColor {
         get {
@@ -78,6 +78,19 @@ struct UserProfile {
                 self.userColor = gender == 0 ? .blue : .green
                 
             }
+            
+            FirebaseAPI.readImage(with: uid, handler: { (image) in
+                if image != nil {
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.image = image!
+                        
+                    }
+                    
+                    
+                }
+            })
                 
         }
 

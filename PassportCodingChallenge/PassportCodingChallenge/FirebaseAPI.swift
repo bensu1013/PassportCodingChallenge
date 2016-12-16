@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 struct FirebaseAPI {
     
-    static let ref = FIRDatabase.database().reference()
-    
+    fileprivate static let ref = FIRDatabase.database().reference()
+    fileprivate static let storageRef = FIRStorage.storage().reference(forURL: "gs://passportcodingchallenge.appspot.com")
     //Read profile list from firebase when app loads
     static func readUserList(handler: @escaping ([String : Any]?) -> () ) {
         
@@ -122,8 +124,56 @@ struct FirebaseAPI {
     
 }
 
+//Firebase Storage methods
+extension FirebaseAPI {
+    
+    static func storeImage(with uid: Int, imageData: Data) {
+        
+        let userRef = storageRef.child("images/\(uid).jpeg")
+        
+        let uploadTask = userRef.put(imageData, metadata: nil)
+        
+    }
+    
+    static func readImage(with uid: Int, handler: @escaping (UIImage?) -> () ) {
+        
+        let userRef = storageRef.child("images/\(uid).jpeg")
+        
+        userRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
+            
+            if error != nil {
+    
+                handler(nil)
+                
+            } else {
+                
+                if let data = data {
+                    print("got some data")
+                    let image = UIImage(data: data)
 
-
+                    handler(image)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    static func deleteImage(with uid: Int) {
+        
+        let deleteRef = storageRef.child("image/\(uid).jpeg")
+        
+        deleteRef.delete { (error) in
+            
+        }
+        
+    }
+    
+    
+    
+}
 
 
 

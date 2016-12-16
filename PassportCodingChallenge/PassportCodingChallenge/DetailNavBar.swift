@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol DetailNavBarDelegate {
+protocol DetailNavBarDelegate: class {
     
     func backButtonTapped()
     func updateButtonTapped()
@@ -19,7 +19,7 @@ protocol DetailNavBarDelegate {
 
 class DetailNavBar: UIView {
     
-    var delegate: DetailNavBarDelegate!
+    weak var delegate: DetailNavBarDelegate!
     
     //Subviews for detailView
     var backButton = UIButton()

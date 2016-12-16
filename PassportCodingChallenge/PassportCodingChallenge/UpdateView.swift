@@ -11,7 +11,7 @@ import UIKit
 
 //blue, green, red, orange, cyan
 
-protocol UpdateViewDelegate {
+protocol UpdateViewDelegate: class {
     
     func sendUpdateInfo(color: BackgroundColor, hobbies: String?)
     func dismissUpdateView()
@@ -21,7 +21,7 @@ protocol UpdateViewDelegate {
 
 class UpdateView: UIView {
     
-    var delegate: UpdateViewDelegate!
+    weak var delegate: UpdateViewDelegate!
     
     var fadeView = UIView()
     var hobbiesField = UITextView()

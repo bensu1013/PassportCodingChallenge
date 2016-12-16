@@ -34,6 +34,7 @@ class MainViewTableViewCell: UITableViewCell {
             uidLabel.text = "User ID: \(profile!.uid)"
             nameLabel.text = "Name: \(profile!.name)"
             cellView.backgroundColor = profile!.backgroundColor
+            profileImage.image = profile!.image
             
         } else {
             

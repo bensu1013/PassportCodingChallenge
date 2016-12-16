@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol SorterViewDelegate {
+protocol SorterViewDelegate: class {
     
     func reloadListView()
     

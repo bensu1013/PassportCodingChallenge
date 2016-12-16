@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ListNavBarDelegate {
+protocol ListNavBarDelegate: class {
     
     func addButtonTapped()
     func sortButtonTapped()
@@ -20,7 +20,7 @@ class ListNavBar: UIView {
 
     var addButton = UIButton()
     var sortButton = UIButton()
-    var delegate: ListNavBarDelegate!
+    weak var delegate: ListNavBarDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

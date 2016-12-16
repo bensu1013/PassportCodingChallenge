@@ -114,7 +114,7 @@ extension DetailViewController: DetailNavBarDelegate {
     func removeButtonTapped() {
         
         FirebaseAPI.removeProfile(id: detailView.user.uid)
-        
+        FirebaseAPI.deleteImage(with: detailView.user.uid)
         dismiss(animated: true, completion: nil)
         
     }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-protocol AddProfileDelegate {
+protocol AddProfileDelegate: class {
     
     func dismissAddView()
     func showAlertMessage(alert: UIAlertController)
@@ -21,7 +21,7 @@ protocol AddProfileDelegate {
 
 class AddProfileView: UIView {
     
-    var delegate: AddProfileDelegate!
+    weak var delegate: AddProfileDelegate!
     var imagePicker = UIImagePickerController()
     
     var fadeView = UIView()
@@ -71,11 +71,19 @@ class AddProfileView: UIView {
             
             guard let inputAge = Int(ageField.text!) else { return }
             
-            let dict: [String : Any] = ["name" : nameField.text!, "hobbies" : hobbiesField.text!, "age" : inputAge, "gender" : selectedGender.rawValue, "uid" : Int(arc4random())]
+            let uid = Int(arc4random())
+            
+            let dict: [String : Any] = ["name" : nameField.text!, "hobbies" : hobbiesField.text!, "age" : inputAge, "gender" : selectedGender.rawValue, "uid" : uid]
             
             let newUser = UserProfile(data: dict)
             
+            let userImage = imageView.image
+            
+            let imageData = UIImageJPEGRepresentation(userImage!, 0.75)
+            
             FirebaseAPI.addProfile(profile: newUser)
+            
+            FirebaseAPI.storeImage(with: uid, imageData: imageData!)
             
             clearAllFields()
             
@@ -98,6 +106,7 @@ class AddProfileView: UIView {
         nameField.text = ""
         hobbiesField.text = ""
         ageField.text = ""
+        imageView.image = nil
         
     }
     

@@ -23,7 +23,7 @@ class MainTableViewModel: UIView {
     var tableView = UITableView()
     var tempid = 0
     var hasRows = true
-    var delegate: MainTableViewDelegate!
+    weak var delegate: MainTableViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
